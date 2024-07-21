@@ -75,7 +75,7 @@ resource "null_resource" "push_image_med_to_ecr" {
       aws ecr get-login-password --region ${var.aws_region} | docker login --username AWS --password-stdin ${aws_ecr_repository.repository_med.repository_url}
       mkdir -p ./temp_repo_med
       cd ./temp_repo_med || exit 1
-      git clone https://github.com/bluesburger/bluesburger-stock ./ordering-system-repo-med
+      git clone https://github.com/Health-Med/health-human ./ordering-system-repo-med
       cd ./ordering-system-repo-med || exit 1
       docker build -t ${aws_ecr_repository.repository_med.repository_url}:latest .
       docker push ${aws_ecr_repository.repository_med.repository_url}:latest
